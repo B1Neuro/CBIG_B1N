@@ -29,7 +29,9 @@ function eucli_dist = CBIG_ArealMSHBM_component_distance(lh_labels, rh_labels, m
 %
 % Written by Ru(by) Kong and CBIG under MIT license: https://github.com/ThomasYeoLab/CBIG/blob/master/LICENSE.md
 
-addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+if (~isdeployed)
+    addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+end
 
 %% Find distributed parcels
 parcel_components = CBIG_ArealMSHBM_compute_components_general(lh_labels, rh_labels, mesh, num_parcel);
@@ -134,6 +136,8 @@ if(~isempty(parcels_dist))
 end
 eucli_dist = eucli_dist';
 
-rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+if (~isdeployed)
+    rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+end
 
 end

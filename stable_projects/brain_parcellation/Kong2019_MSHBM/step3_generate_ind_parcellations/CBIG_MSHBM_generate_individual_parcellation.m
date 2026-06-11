@@ -112,7 +112,9 @@ function [lh_labels, rh_labels] = CBIG_MSHBM_generate_individual_parcellation( .
 %
 % Written by Ru(by) Kong and CBIG under MIT license: https://github.com/ThomasYeoLab/CBIG/blob/master/LICENSE.md
 
-addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+if (~isdeployed)
+    addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+end
 
 if(nargin < 8)
     subject_set = 'test_set';
@@ -303,7 +305,9 @@ save(fullfile(out_dir, ...
     ['Ind_parcellation_MSHBM_sub',num2str(subid),'_w',num2str(setting_params.w),'_MRF',num2str(c),'.mat']), ...
     'lh_labels','rh_labels');
 
-rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+if (~isdeployed)
+    rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+end
 
 end
 

@@ -103,10 +103,12 @@ function [lh_labels, rh_labels] = CBIG_MSHBM_parcellation_single_subject(params)
 % Written by Ru(by) Kong and CBIG under MIT license: https://github.com/ThomasYeoLab/CBIG/blob/master/LICENSE.md
 
 CBIG_CODE_DIR = getenv('CBIG_CODE_DIR');
-addpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
-    'step1_generate_profiles_and_ini_params'));
-addpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
-    'step3_generate_ind_parcellations'));
+if (~isdeployed)
+    addpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
+        'step1_generate_profiles_and_ini_params'));
+    addpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
+        'step3_generate_ind_parcellations'));
+end
     
 %% Prepare inputs
 % prepare project_directory
@@ -379,10 +381,12 @@ else
         target_mesh, num2str(num_sess), '17', '1', w, c, 'test_set');
 end
 
-rmpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
-    'step1_generate_profiles_and_ini_params'));
-rmpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
-    'step3_generate_ind_parcellations'));
+if (~isdeployed)
+    rmpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
+        'step1_generate_profiles_and_ini_params'));
+    rmpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
+        'step3_generate_ind_parcellations'));
+end
 end
 
 function save_cell_as_list(myCell, filedir, baseFileName)

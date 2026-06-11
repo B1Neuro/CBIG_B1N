@@ -150,7 +150,9 @@ function Params = CBIG_MSHBM_estimate_group_priors(project_dir,mesh,num_sub,num_
 %
 % Written by Ru(by) Kong and CBIG under MIT license: https://github.com/ThomasYeoLab/CBIG/blob/master/LICENSE.md
 
-addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+if (~isdeployed)
+    addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+end
 
 pnames = {'max_iter' 'conv_th' 'save_all'};
 dflts =  {'50' '1e-5' '0'};
@@ -307,7 +309,9 @@ while(stop_inter == 0)
         ['Params_iteration',num2str(Params.iter_inter),'.mat']), 'Params');
 end
 
-rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+if (~isdeployed)
+    rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+end
 
 end
 

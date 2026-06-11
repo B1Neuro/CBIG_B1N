@@ -129,12 +129,14 @@ function [lh_labels, rh_labels] = CBIG_ArealMSHBM_parcellation_single_subject(pa
 % Written by Ru(by) Kong and CBIG under MIT license: https://github.com/ThomasYeoLab/CBIG/blob/master/LICENSE.md
 
 CBIG_CODE_DIR = getenv('CBIG_CODE_DIR');
-addpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
-    'step1_generate_profiles_and_ini_params'));
-addpath(genpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2022_ArealMSHBM',...
-    'step0_generate_gradient_prior')));
-addpath(genpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2022_ArealMSHBM',...
-    'step3_generate_ind_parcellations')));
+if (~isdeployed)
+    addpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
+        'step1_generate_profiles_and_ini_params'));
+    addpath(genpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2022_ArealMSHBM',...
+        'step0_generate_gradient_prior')));
+    addpath(genpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2022_ArealMSHBM',...
+        'step3_generate_ind_parcellations')));
+end
 
 %% Prepare inputs
 % prepare project_directory
@@ -479,12 +481,14 @@ else
         target_mesh, num2str(num_sess), num_ROIs, '1', w, c, beta, 'test_set');
 end
 
-rmpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
-    'step1_generate_profiles_and_ini_params'));
-rmpath(genpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2022_ArealMSHBM',...
-    'step0_generate_gradient_prior')));
-rmpath(genpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2022_ArealMSHBM',...
-    'step3_generate_ind_parcellations')));
+if (~isdeployed)
+    rmpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2019_MSHBM',...
+        'step1_generate_profiles_and_ini_params'));
+    rmpath(genpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2022_ArealMSHBM',...
+        'step0_generate_gradient_prior')));
+    rmpath(genpath(fullfile(CBIG_CODE_DIR,'stable_projects','brain_parcellation','Kong2022_ArealMSHBM',...
+        'step3_generate_ind_parcellations')));
+end
 
 end
 

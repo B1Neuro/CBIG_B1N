@@ -131,8 +131,10 @@ function [lh_labels, rh_labels] = CBIG_ArealMSHBM_dMSHBM_generate_individual_par
 
 
 
-addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
-addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2022_ArealMSHBM', 'lib'));
+if (~isdeployed)
+    addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+    addpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2022_ArealMSHBM', 'lib'));
+end
 
 %% setting parameters
 % when generating individual parcellation, each time we will only generate the parcellation for one subject.
@@ -315,8 +317,10 @@ save(fullfile(out_dir, ...
     ['Ind_parcellation_MSHBM_sub',subid,'_w',num2str(setting_params.w),'_MRF', ...
     c,'.mat']), 'lh_labels','rh_labels');
 
-rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
-rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2022_ArealMSHBM', 'lib'));
+if (~isdeployed)
+    rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2019_MSHBM', 'lib'));
+    rmpath(fullfile(getenv('CBIG_CODE_DIR'), 'stable_projects', 'brain_parcellation', 'Kong2022_ArealMSHBM', 'lib'));
+end
 
 end
 
