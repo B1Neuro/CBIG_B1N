@@ -20,6 +20,10 @@ function CBIG_SPGrad_construct_cifti_format(mesh, mask, data, filename)
 %
 % Written by Ru(by) Kong and CBIG under MIT license: https://github.com/ThomasYeoLab/CBIG/blob/master/LICENSE.md
 
+if (~isdeployed)
+    addpath(genpath(fullfile(getenv('CBIG_CODE_DIR'),...
+    '/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
+end
 if(strcmp(mesh,'fs_LR_32k'))
     cifti_template = fullfile(getenv('CBIG_CODE_DIR'), 'utilities', 'matlab', 'speedup_gradients', ...
     'utilities', 'fslr_surface_template', 'cifti_template.dscalar.nii');
@@ -47,3 +51,7 @@ else
     error(['We do not have midthickness surface mesh for ' mesh 'in current version.']);
 end
 
+if (~isdeployed)
+    rmpath(genpath(fullfile(getenv('CBIG_CODE_DIR'), ...
+    '/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
+end
