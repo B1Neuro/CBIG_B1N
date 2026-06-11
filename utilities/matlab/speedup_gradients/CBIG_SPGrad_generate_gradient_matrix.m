@@ -35,8 +35,10 @@ function CBIG_SPGrad_generate_gradient_matrix(mesh, medial_mask, downsample, out
 %
 % Written by Ru(by) Kong and CBIG under MIT license: https://github.com/ThomasYeoLab/CBIG/blob/master/LICENSE.md
 
-addpath(genpath(fullfile(getenv('CBIG_CODE_DIR'),...
- '/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
+if (~isdeployed)
+    addpath(genpath(fullfile(getenv('CBIG_CODE_DIR'),...
+     '/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
+end
 
 downsample = str2num(downsample);
 
@@ -145,8 +147,10 @@ clear rh_dist
 
 disp('########## Done!') 
 
-rmpath(genpath(fullfile(getenv('CBIG_CODE_DIR'), ...
-'/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
+if (~isdeployed)
+    rmpath(genpath(fullfile(getenv('CBIG_CODE_DIR'), ...
+    '/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
+end
 
 
 
