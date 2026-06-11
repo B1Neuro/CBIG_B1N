@@ -116,9 +116,10 @@ function CBIG_SPGrad_RSFC_gradients(fMRI_files1, fMRI_files2, censor_files, lh_i
 %
 % Written by Ru(by) Kong and CBIG under MIT license: https://github.com/ThomasYeoLab/CBIG/blob/master/LICENSE.md
 
-addpath(genpath(fullfile(getenv('CBIG_CODE_DIR'),...
- '/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
-
+if (~isdeployed)
+    addpath(genpath(fullfile(getenv('CBIG_CODE_DIR'),...
+    '/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
+end
 %% SET UP ENVIROnMENT
 disp('SET UP ENVIRONMENT ...')
 % temporay output directory and dump file directory
@@ -571,5 +572,7 @@ edge_density = sum_edges / num_sample_S;
 CBIG_SPGrad_construct_cifti_format(mesh, medial_mask, edge_density, [outputdir '/gradients_edge_density.dtseries.nii']);
 disp('########## Done!')
 
-rmpath(genpath(fullfile(getenv('CBIG_CODE_DIR'), ...
-'/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
+if (~isdeployed)
+    rmpath(genpath(fullfile(getenv('CBIG_CODE_DIR'), ...
+    '/external_packages/matlab/non_default_packages/cifti-matlab-WashU-gradient')));
+end
